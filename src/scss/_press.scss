@@ -1,0 +1,195 @@
+/**
+ * Block
+ */
+.press {
+    $block: &;
+    background: linear-gradient(to bottom, #000 0%, $c-neutral-dark 50%, $c-neutral 100%);
+    color: $c-light;
+    /**
+     * Items
+     */
+    &__item {
+        width: 100%;
+        height: 100%;
+        padding: 4.8rem 4.8rem 9.6rem;
+        display: none;
+        justify-content: center;
+        overflow: auto;
+        &:first-child {
+            display: flex;
+        }
+    }
+    /**
+     * Content
+     */
+    &__content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        animation-fill-mode: both;
+    }
+    &__img {
+        max-width: 100%;
+        width: auto;
+        height: 50%;
+        display: block;
+    }
+    &__logo {
+        position: absolute;
+        top: 4rem;
+        right: 4rem;
+        width: 20rem;
+        height: auto;
+        overflow: hidden;
+        img {
+            width: 20rem;
+            height: auto;
+        }
+    }
+    /**
+     * List
+     */
+    &__list {
+        display: flex;
+        flex-flow: row wrap;
+        &-item {
+            opacity: 0;
+            flex: 1 0 30%;
+            padding: 3rem;
+            margin-bottom: 0;
+            border-left: 1px solid rgba(255,255,255,.3);
+            border-top: 1px solid rgba(255,255,255,.3);
+            animation-fill-mode: both;
+            animation-delay: .4s;
+        }
+        &-item:nth-child(2) {
+            animation-delay: .6s;
+        }
+        &-item:nth-child(3) {
+            animation-delay: .8s;
+        }
+        &-item:nth-child(4) {
+            animation-delay: 1s;
+        }
+        &-item:nth-child(5) {
+            animation-delay: 1.2s;
+        }
+        &-item:nth-child(6) {
+            animation-delay: 1.4s;
+        }
+        &-item:nth-child(3n+1) {
+            border-left: none;
+        }
+        &-item:nth-child(-n+3) {
+            border-top: none;
+        }
+    }
+    /**
+     * Controls
+     */
+    &__controls {
+        @extend %navigation;
+        right: 0;
+        left: 50%;
+        font-size: 2rem;
+    }
+    &__navigation {
+        @extend %navigation;
+        right: 50%;
+        left: 0;
+        font-size: .9rem;
+    }
+    &__dot {
+        color: $c-light;
+        margin: .5rem;
+        &:first-child {
+            i {
+                font-weight: 700;
+            }
+        }
+    }
+    &__arrows {
+        display: none;
+        &:first-child {
+            display: block;
+        }
+    }
+    &__next,
+    &__prev {
+        margin: .5rem;
+        color: $c-light;
+    }
+    /**
+     * Press info
+     */
+    &__info {
+        height: 50%;
+        margin-top: 2rem;
+        display: flex;
+        flex-flow: row wrap;
+    }
+    &__qr, &__author {
+        flex: 1 0 50%;
+    }
+    &__author {
+        text-align: center;
+        p {
+            margin-top: 3rem;
+        }
+    }
+    &__img--info {
+        display: inline-block;
+        width: 35vh;
+        height: auto;
+    }
+    /**
+     * Slides variations
+     */
+    @include breakpoints(lg) {
+        &--first-page {
+            #{$block}__content {
+                width: 60%;
+            }
+        }
+    }
+    &--iframe {
+        #{$block}__content {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 9.6rem;
+            left: 0;
+            height: auto;
+        }
+        iframe {
+            height: 100%;
+        }
+    }
+    /**
+     * Animation
+     */
+    &__nav {
+        &:target {
+            ~ #{$block}__controls #{$block}__arrows {
+                display: none;
+            }
+            ~ #{$block}__inner {
+                #{$block}__item {
+                    display: none;
+                }
+                #{$block}--list #{$block}__list-item {
+                    animation-name: fade;
+                    animation-duration: 0.4s;
+                }
+            }
+            ~ #{$block}__navigation #{$block}__dot i {
+                font-weight: 400;
+            }
+        }
+        @include show-arrows(40);
+        @include show-content(40);
+        @include active-dot(40);
+    }
+}
