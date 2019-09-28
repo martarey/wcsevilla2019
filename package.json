@@ -1,0 +1,40 @@
+{
+  "name": "WCS",
+  "version": "2.0.0",
+  "description": "Gulpfile for WCS",
+  "main": "gulpfile.js",
+  "sasslintConfig": ".sasslintrc",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "compass": "^0.1.1",
+    "eslint": "^5.15.1",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^3.2.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^5.0.0",
+    "gulp-wp-pot": "^2.3.1",
+    "husky": "^3.0.2",
+    "node-sass": "^4.12.0",
+    "sass-lint": "^1.13.1",
+    "sass-lint-auto-fix": "^0.17.0",
+    "vinyl-sourcemaps-apply": "~0.2.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "sass-lint -v",
+    "lint:fix": "sass-lint-auto-fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint"
+    }
+  },
+  "author": "UNIR Desarrollo Web e Innovación",
+  "license": "BSD-2-Clause"
+}
