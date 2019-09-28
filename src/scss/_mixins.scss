@@ -1,0 +1,39 @@
+$dev-list: (
+	sm: 768,
+	md: 1024,
+	lg: 1200
+);
+
+// Mobile first, all devices
+@mixin breakpoints($device) {
+	@if map-has-key($dev-list, $device) {
+		@media screen and (min-width: #{map-get($dev-list, $device)}px) { @content; }
+	}
+}
+
+
+@mixin show-arrows ($slides) {
+	@for $i from 1 through $slides {
+		&:nth-child(#{$i}):target ~ .press__controls .press__arrows:nth-child(#{$i}) {
+			display: block;
+		}
+	}
+}
+
+@mixin show-content ($slides) {
+	@for $i from 1 through $slides {
+		&:nth-child(#{$i}):target ~ .press__inner .press__item:nth-child(#{$i}) {
+			display: flex;
+	        animation-name: fade;
+	        animation-duration: 0.4s;
+		}
+	}
+}
+
+@mixin active-dot ($slides) {
+	@for $i from 1 through $slides {
+		&:nth-child(#{$i}):target ~ .press__navigation .press__dot:nth-child(#{$i}) i {
+			font-weight: 900;
+		}
+	}
+}
