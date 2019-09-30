@@ -167,6 +167,9 @@
             height: 100%;
         }
     }
+    @at-root .cp_embed_wrapper {
+        flex: 1 0 auto;
+    }
     /**
      * Animation
      */
